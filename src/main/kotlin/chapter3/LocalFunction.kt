@@ -22,4 +22,3 @@ fun saveUser(user: User) {
     user.validateBeforeSave() // 확장 함수 호출
     // user 저장 로직
 }
-

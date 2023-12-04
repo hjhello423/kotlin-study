@@ -1,6 +1,5 @@
 package chapter3.함수를_호출하기_쉽게_만들기
 
-
 fun main() {
     val list = listOf(1, 2, 3)
 
@@ -10,6 +9,9 @@ fun main() {
 
     val joinToString2 = joinToString(collections = list) // 인자중 일부의 이름을 명시적으로 지정할 수 있다.
     println(joinToString2)
+
+    performOperation()
+    println(opCount)
 }
 
 fun <T> joinToString(
@@ -25,4 +27,10 @@ fun <T> joinToString(
     }
     result.append(postfix)
     return result.toString()
+}
+
+var opCount = 0 // 최상위 프로퍼티
+
+fun performOperation() {
+    opCount++
 }

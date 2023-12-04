@@ -28,7 +28,7 @@ fun destructuringDeclarations() {
     val (number2, name2) = 1 myInfix "one"
     println("myInfix: number = $number2, name = $name2")
 
-    for((index, element) in listOf("a", "b", "c").withIndex()) {
+    for ((index, element) in listOf("a", "b", "c").withIndex()) {
         println("index = $index, element = $element")
     }
 }

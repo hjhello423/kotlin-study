@@ -1,10 +1,14 @@
 plugins {
-    kotlin("jvm") version "1.9.0"
+    kotlin("jvm") version "1.9.21"
     application
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+group = "com.example"
+version = "0.0.1-SNAPSHOT"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
 
 repositories {
     mavenCentral()
@@ -19,9 +23,11 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(17)
 }
 
 application {
     mainClass.set("MainKt")
 }
+
+tasks.register("prepareKotlinBuildScriptModel"){}

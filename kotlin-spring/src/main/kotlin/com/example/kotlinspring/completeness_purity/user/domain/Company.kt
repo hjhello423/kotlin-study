@@ -8,6 +8,6 @@ class Company(
 ) {
     fun isEmailCorporate(email: String): Boolean {
         val emailDomain = email.split('@')[1]
-        return emailDomain === domain
+        return emailDomain == domain
     }
 }

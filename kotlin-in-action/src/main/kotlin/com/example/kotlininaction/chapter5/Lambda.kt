@@ -1,6 +1,5 @@
 package com.example.kotlininaction.chapter5
 
-
 fun main() {
     val peoples = listOf(Person("길동", 20), Person("철수", 30), Person("영희", 40))
 
@@ -31,8 +30,6 @@ fun main() {
 
     val predicate = Person::isAdult
 }
-
-data class Person(val name: String, val age: Int)
 
 fun findTheOldest(people: List<Person>) {
     var maxAge = 0 // 가장 많은 나이 저장

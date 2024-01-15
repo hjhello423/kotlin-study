@@ -33,7 +33,6 @@ fun infix() {
     println("myInfix: number = $number2, name = $name2")
 }
 
-
 fun destructuringDeclarations() {
     val (number, name) = 1 to "one"
 

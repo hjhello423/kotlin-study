@@ -27,4 +27,3 @@ class Button : View {
     class ButtonState : State {} // 자바의 static 중첩 클래스와 같다.
     inner class ButtonState2 : State {} // 자바의 inner 클래스와 같다.
 }
-

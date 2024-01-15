@@ -1,6 +1,5 @@
 package chapter4
 
-
 fun main() {
     Button2().click()
 }

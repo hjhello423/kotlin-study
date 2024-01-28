@@ -6,7 +6,7 @@ fun main() {
 }
 
 fun strLen(s: String): Int {
-    return if(s != null) {
+    return if (s != null) {
         s.length
     } else {
         0
@@ -26,3 +26,16 @@ fun ignoreNulls(s: String?) {
     println(sNotNull.length)
 }
 
+class StringPrinter : StringProcessor {
+    override fun process(value: String) { // non-null로 오버라이드 했다.
+        println(value)
+    }
+}
+
+class NullableStringPrinter : StringProcessor {
+    override fun process(value: String?) { // nullable로 오버라이드 했다.
+        if (value != null) {
+            println(value)
+        }
+    }
+}

@@ -3,24 +3,24 @@ package com.example.chapter3
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-suspend fun returnTypeMain1() {
-    val i: Int = suspendCoroutine<Int> { continuation ->
-        continuation.resume(1)
+suspend fun main_returnType1() {
+    val i: Int = suspendCoroutine<Int> { continuation -> //  Int
+        continuation.resume(1) //  Int 반환
     }
     println(i)
 
-    val str: String = suspendCoroutine<String> { continuation ->
-        continuation.resume("Hello")
+    val str: String = suspendCoroutine<String> { continuation -> // String
+        continuation.resume("Hello") // String 반환
     }
     println(str)
 
-    val b: Boolean = suspendCoroutine<Boolean> { continuation ->
-        continuation.resume(true)
+    val b: Boolean = suspendCoroutine<Boolean> { continuation -> // Boolean
+        continuation.resume(true) // Boolean 반환
     }
     println(b)
 }
 
-suspend fun returnTypeMain2() {
+suspend fun main2() {
     println("Before")
     val user = suspendCoroutine<User> { continuation ->
         requestUser { user -> continuation.resume(user) }

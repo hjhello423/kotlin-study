@@ -5,7 +5,7 @@ import kotlin.coroutines.suspendCoroutine
 
 class MyException : IllegalArgumentException("My Exception")
 
-suspend fun exceptionMain1() {
+suspend fun main() {
     try {
         suspendCoroutine<Unit> { continuation ->
             continuation.resumeWithException(MyException())

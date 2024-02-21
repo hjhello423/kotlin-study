@@ -43,49 +43,13 @@ fun continueAgerSecond(continuation: Continuation<Unit>) {
     }
 }
 
-suspend fun suspendMain4() {
+suspend fun main() {
     println("Before")
 
     suspendCoroutine<Unit> { continuation ->
         println("Before too")
         continueAgerSecond(continuation)
     }
-
-    println("After")
-}
-
-private val executor =
-    Executors.newSingleThreadScheduledExecutor {
-        Thread(it, "scheduler")
-            .apply { isDaemon = true }
-    }
-
-suspend fun suspendMain5() {
-    println("Before")
-
-    suspendCoroutine<Unit> { continuation ->
-        println("Before too")
-        executor.schedule({
-            continuation.resume(Unit)
-        }, 1000, TimeUnit.MILLISECONDS)
-    }
-
-    println("After")
-}
-
-
-suspend fun delay(timeMillis: Long) {
-    suspendCoroutine<Unit> { continuation ->
-        executor.schedule({
-            continuation.resume(Unit)
-        }, timeMillis, TimeUnit.MILLISECONDS)
-    }
-}
-
-suspend fun main() {
-    println("Before")
-
-    delay(1000)
 
     println("After")
 }

@@ -8,17 +8,17 @@ import kotlinx.coroutines.launch
 suspend fun main_1(): Unit = coroutineScope {
     val job = Job()
 
-    launch(job) {
+    launch(job) { // 새로운 job이 부모로부터 상속받은 job을 대체한다.
         delay(1000)
         println("1")
     }
 
-    launch(job) {
+    launch(job) { // 새로운 job이 부모로부터 상속받은 job을 대체한다.
         delay(2000)
         println("2")
     }
 
-    job.join()
+    job.join() // 여기서 영원히 대기한다.
     println("will not be printed")
 }
 

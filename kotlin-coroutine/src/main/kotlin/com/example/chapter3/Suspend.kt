@@ -38,8 +38,10 @@ suspend fun suspendMain3() {
 
 fun continueAgerSecond(continuation: Continuation<Unit>) {
     thread {
-        Thread.sleep(1000)
+        println("before sleep")
+        Thread.sleep(3000)
         continuation.resume(Unit)
+        println("after resume")
     }
 }
 
@@ -47,7 +49,7 @@ suspend fun main() {
     println("Before")
 
     suspendCoroutine<Unit> { continuation ->
-        println("Before too")
+        println("in lambda")
         continueAgerSecond(continuation)
     }
 

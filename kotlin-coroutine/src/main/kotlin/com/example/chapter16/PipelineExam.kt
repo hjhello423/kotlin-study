@@ -12,15 +12,15 @@ fun CoroutineScope.numbers(): ReceiveChannel<Int> = produce {
     }
 }
 
-fun CoroutineScope.square(numbers: ReceiveChannel<Int>) = produce {
+fun CoroutineScope.square(numbers: ReceiveChannel<Int>): ReceiveChannel<Int> = produce {
     for (num in numbers) {
         send(num * num)
     }
 }
 
-suspend fun main() = coroutineScope {
+suspend fun main(): Unit = coroutineScope {
     val numbers = numbers()
-    val squared = square(numbers)
+    val squared = square(numbers)  // ReceiveChannel을 인자로
     for (num in squared) {
         println(num)
     }

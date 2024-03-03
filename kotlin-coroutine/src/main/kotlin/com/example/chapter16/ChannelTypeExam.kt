@@ -1,12 +1,13 @@
 package com.example.chapter16
 
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 
 suspend fun main_Buffered(): Unit = coroutineScope {
-    val channel = produce(capacity = 3) { // 버퍼 용량을 3으로 설정
+    val channel: ReceiveChannel<Int> = produce(capacity = 3) { // 버퍼 용량을 3으로 설정
         repeat(5) { index ->
             send(index)
             println("produce: $index")
@@ -24,7 +25,7 @@ suspend fun main_Buffered(): Unit = coroutineScope {
 }
 
 suspend fun main_rendezvous(): Unit = coroutineScope {
-    val channel = produce(capacity = Channel.RENDEZVOUS) { // 버퍼 용량을 0으로 설정 , default
+    val channel: ReceiveChannel<Int> = produce(capacity = Channel.RENDEZVOUS) { // 버퍼 용량을 0으로 설정 , default
         repeat(5) { index ->
             send(index)
             println("produce: $index")
@@ -42,7 +43,7 @@ suspend fun main_rendezvous(): Unit = coroutineScope {
 }
 
 suspend fun main(): Unit = coroutineScope {
-    val channel = produce(capacity = Channel.CONFLATED) { // 버퍼 용량을 1으로 설정
+    val channel: ReceiveChannel<Int> = produce(capacity = Channel.CONFLATED) { // 버퍼 용량을 1으로 설정
         repeat(5) { index ->
             send(index)
             println("produce: $index")

@@ -7,9 +7,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 suspend fun main(): Unit = coroutineScope {
-    val channel = Channel<Int>(
+    val channel: Channel<Int> = Channel<Int>(
         capacity = 2,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
+        onBufferOverflow = BufferOverflow.DROP_OLDEST // 가장 오래된 원소를 제거
     )
 
     launch {

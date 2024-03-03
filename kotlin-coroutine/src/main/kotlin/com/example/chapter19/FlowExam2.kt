@@ -25,7 +25,7 @@ suspend fun main() {
         launch {
             delay(2100)
             println("I got enough")
-            job.cancel()
+            job.cancel() // flow 취소
         }
     }
 }

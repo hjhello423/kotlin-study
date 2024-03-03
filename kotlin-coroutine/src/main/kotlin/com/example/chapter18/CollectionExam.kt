@@ -1,15 +1,5 @@
 package com.example.chapter18
 
-fun m(i: Int): Int {
-    print("m$i ")
-    return i * i
-}
-
-fun f(i: Int): Boolean {
-    print("f$i ")
-    return i >= 10
-}
-
 fun main_exam1() {
     listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
         .map { m(it) }
@@ -26,14 +16,19 @@ fun main_exam1() {
     // m1 f1 m2 f4 m3 f9 m4 f16 16
 }
 
-fun m2(i: Int): Int {
+fun m(i: Int): Int {
     print("m$i ")
     return i * i
 }
 
+fun f(i: Int): Boolean {
+    print("f$i ")
+    return i >= 10
+}
+
 fun main() {
     val l = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-        .map { m2(it) } // m1 m2 m3 m4 m5 m6 m7 m8 m9 m10
+        .map { m(it) } // m1 m2 m3 m4 m5 m6 m7 m8 m9 m10
 
     println()
     println(l) // [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
@@ -44,8 +39,7 @@ fun main() {
     val s = sequenceOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
         .map { m(it) }
 
-    println(s.toList())
-    // [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+    println(s.toList())  // [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
     println(s.find { it > 10 }) // m1 m2 m3 m4 16
     println(s.find { it > 10 }) // m1 m2 m3 m4 16
     println(s.find { it > 10 }) // m1 m2 m3 m4 16

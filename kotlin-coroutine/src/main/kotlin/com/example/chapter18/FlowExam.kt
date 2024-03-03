@@ -1,12 +1,14 @@
 package com.example.chapter18
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-private fun CoroutineScope.makeChannel() = produce {
+private fun CoroutineScope.makeChannel(): ReceiveChannel<Int> = produce {
     println("Channel started")
     for (i in 1..3) {
         delay(1000)
@@ -14,9 +16,8 @@ private fun CoroutineScope.makeChannel() = produce {
     }
 }
 
-//suspend fun main_hotChannel() = coroutineScope {
-suspend fun main() = coroutineScope {
-    val channel = makeChannel()
+suspend fun main_hotChannel(): Unit = coroutineScope {
+    val channel: ReceiveChannel<Int> = makeChannel()
 
     delay(1000)
     println("Calling channel...")
@@ -30,7 +31,7 @@ suspend fun main() = coroutineScope {
 }
 
 
-private fun makeFlow() = flow {
+private fun makeFlow(): Flow<Int> = flow {
     println("Flow started")
     for (i in 1..3) {
         delay(1000)
@@ -38,12 +39,12 @@ private fun makeFlow() = flow {
     }
 }
 
-//suspend fun main() = coroutineScope {
-//    val flow = makeFlow()
-//
-//    delay(1000)
-//    println("Calling flow...")
-//    flow.collect { value -> println(value) }
-//    println("Consuming again...")
-//    flow.collect { value -> println(value) }
-//}
+suspend fun main(): Unit = coroutineScope {
+    val flow: Flow<Int> = makeFlow()
+
+    delay(1000)
+    println("Calling flow...")
+    flow.collect { value -> println(value) }
+    println("Consuming again...")
+    flow.collect { value -> println(value) }
+}

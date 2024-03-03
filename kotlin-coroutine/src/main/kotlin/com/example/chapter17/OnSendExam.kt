@@ -7,8 +7,8 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.selects.select
 
 fun main(): Unit = runBlocking {
-    val c1 = Channel<Char>(capacity = 2)
-    val c2 = Channel<Char>(capacity = 2)
+    val c1: Channel<Char> = Channel<Char>(capacity = 2)
+    val c2: Channel<Char> = Channel<Char>(capacity = 2)
 
     launch {
         for (c in 'A'..'H') {
@@ -23,7 +23,7 @@ fun main(): Unit = runBlocking {
     launch {
         while (true) {
             delay(1000)
-            val c = select<String> {
+            val c: String = select<String> {
                 c1.onReceive { "$it from #1" }
                 c2.onReceive { "$it from #2" }
             }
